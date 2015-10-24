@@ -82,6 +82,8 @@ public class MyApplication extends Application implements SharedPreferences.OnSh
                     biggestTimeStampSeen = (status.createdAt.getTime() > lastTimeStampSeen)
                             ? status.createdAt.getTime() : lastTimeStampSeen;
                     lastTimeStampSeen = status.createdAt.getTime();
+                    sendBroadcast(new Intent(ACTION_NEW_STATUS).putExtra(DbHelper.C_USER, newStatus.user.name)
+                            .putExtra(DbHelper.C_TEXT,newStatus.text.toString() ));
                     /*Log.v(TAG, String.format("status %s :user %s :text %s:counter %d:" +
                                     "timeStamp %d",
                             status.createdAt.getTime(), status.user.name, status.text.toString()
